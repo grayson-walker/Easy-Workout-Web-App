@@ -7,6 +7,22 @@
   height: 40vmin;
 }
 
+table {
+  border: 1px solid #ccc;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td{
+  border: 1px solid #ccc;
+  align-items: left;
+
+}
+
+.red{
+  color:	#B22222
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,12 +39,14 @@
 }
 
 .chest{
-  color:	#8B008B;
+  color:	#000080;
 }
 
 .legs{
-  color:	#FF8C00
+  color:	#B22222
 }
+
+
 
 .checked{
   opacity: 0.2;
