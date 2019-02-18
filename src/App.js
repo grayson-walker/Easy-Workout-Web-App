@@ -33,7 +33,7 @@ class Square extends Component{
      let btn_class = this.state.Clicked ? "checked" : "normal";
      return (
        <button className={btn_class} onClick={this.onClick.bind(this)} width="200" height="200">
-        <img src = {this.props.picType} width="200" height="200" />
+        <img src = {this.props.picType} width="150" height="150" />
        </button>
     );
   }
@@ -73,13 +73,22 @@ class Board extends Component{
       );
     }
 
-    buttonRender(){
-      this.setState({ LoaderClicked: !this.state.LoaderClicked })
+    // buttonRender(){
+    //   this.setState({ LoaderClicked: !this.state.LoaderClicked })
+    // }
+
+    makeTable(inputArray){
+      let test = []
+      for(var cell=0; cell< inputArray.length;cell++){
+        test.push(<td>{inputArray[cell]}</td>)
+      }
+
+      return test
     }
 
 
     render() {
-      let showWorkout = this.state.LoaderClicked ? decideWorkout(this.state.Squares) : "";
+      // let showWorkout = this.state.LoaderClicked ? decideWorkout(this.state.Squares) : "";
         return (
           <div>
             <div>
@@ -96,21 +105,24 @@ class Board extends Component{
                 {this.renderSquare(bands,'bands')}
               </div>
             </div>
-            <button onClick={this.buttonRender.bind(this)}>
+            {/* <button onClick={this.buttonRender.bind(this)}>
                Load Workout
-            </button>
-            <div className='chest'>
-            Chest:  {showWorkout.Chest}
-            </div>
-            <div className='legs'>
-            Legs:  {showWorkout.Legs}
-            </div>
-            <div className='chest'>
-            Biceps:  {showWorkout.Biceps}
-            </div>
-            <div className='legs'>
-            Shoulders:  {showWorkout.Shoulders}
-            </div>
+            </button> */}
+            <h3>Here are your options for a workout:</h3>
+            <table>
+              <tr className = "red">
+                Legs:  {this.makeTable(decideWorkout(this.state.Squares).Legs)}
+              </tr>
+              <tr className = "chest">
+                  Chest:  {this.makeTable(decideWorkout(this.state.Squares).Chest)}
+              </tr>
+              <tr className = "red">
+                  Biceps:  {this.makeTable(decideWorkout(this.state.Squares).Biceps)}
+              </tr>
+              <tr  className = "chest">
+                Shoulders:  {this.makeTable(decideWorkout(this.state.Squares).Shoulders)}
+              </tr>
+            </table>
           </div>
         );
     }
