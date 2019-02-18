@@ -1,12 +1,12 @@
 
 
-function decideWorkout(clickedObj)  {
+function decideWorkout(clickedObj) {
 
 
-  let legs = ['lunge']
-  let chest = []
-  let biceps = []
-  let shoulders = []
+  let legs = [];
+  let chest = [];
+  let biceps = [];
+  let shoulders = [];
 
   let euipObject = {
      'smith' : {
@@ -16,10 +16,10 @@ function decideWorkout(clickedObj)  {
       Shoulders:[]
     },
     'dumbell':  {
-      Legs: ['lunges goblet squat'],
+      Legs: ['goblet squat','lunge'],
       Chest: ['standing fly'],
       Biceps: ['hammer curls'],
-      Shoulders:['lateral raise, upright row ']
+      Shoulders:['lateral raise', 'upright row']
     },
     'bench' : {
       Legs: ['calf raise'],
@@ -47,33 +47,45 @@ function decideWorkout(clickedObj)  {
     },
     'benchAndDumbell': {
       Legs: ['split squat'],
-      Chest: ['dumbell bench press,  dumbell bench fly'],
+      Chest: ['dumbell bench press','dumbell bench fly'],
       Biceps: ['incline bicep curl'],
-      Shoulders:['seated shoulder press seated arnold press ']
+      Shoulders:['seated shoulder press', 'seated arnold press']
     }
-  }
+  };
   for (var x in clickedObj){
-      chest.push(euipObject[x].Chest)
-      legs.push(euipObject[x].Legs)
-      biceps.push(euipObject[x].Biceps)
-      shoulders.push(euipObject[x].Shoulders)
-      shoulders.push(', ')
-      biceps.push(', ')
-      chest.push(', ')
-      legs.push(', ')
-      if(clickedObj['bench'] && clickedObj['dumbell']){
-        chest.push(euipObject['benchAndDumbell'].Chest)
-        legs.push(euipObject['benchAndDumbell'].Legs)
-        biceps.push(euipObject['benchAndDumbell'].Biceps)
-        shoulders.push(euipObject['benchAndDumbell'].Shoulders)
-      }
-      if(clickedObj['bench'] && clickedObj['smith']){
-        chest.push('smith bench press')
-        legs.push()
-      }
-  }
+    for(var y=0; y<euipObject[x].Chest.length; y++){
+      chest.push(euipObject[x].Chest[y])
+    }
+    for(var y=0; y<euipObject[x].Legs.length; y++){
+      legs.push(euipObject[x].Legs[y])
+    }
+    for(var y=0; y<euipObject[x].Biceps.length; y++){
+      biceps.push(euipObject[x].Biceps[y])
+    }
+    for(var y=0; y<euipObject[x].Shoulders.length; y++){
+      shoulders.push(euipObject[x].Shoulders[y])
+    }
+  };
+  if(clickedObj['bench'] && clickedObj['dumbell']){
+    for(var y=0; y<euipObject['benchAndDumbell'].Chest.length; y++){
+      chest.push(euipObject['benchAndDumbell'].Chest[y])
+    }
+    for(var y=0; y<euipObject['benchAndDumbell'].Legs.length; y++){
+      legs.push(euipObject['benchAndDumbell'].Legs[y])
+    }
+    for(var y=0; y<euipObject['benchAndDumbell'].Biceps.length; y++){
+      biceps.push(euipObject['benchAndDumbell'].Biceps[y])
+    }
+    for(var y=0; y<euipObject['benchAndDumbell'].Shoulders.length; y++){
+      shoulders.push(euipObject['benchAndDumbell'].Shoulders[y])
+    }
+  };
+  if(clickedObj['bench'] && clickedObj['smith']){
+    chest.push('smith bench press')
+    legs.push()
+  };
 
-  return {Chest:chest, Legs:legs, Biceps:biceps, Shoulders:shoulders}
+  return {Chest:chest, Legs:legs, Biceps:biceps, Shoulders:shoulders};
 }
 
 module.exports = decideWorkout
